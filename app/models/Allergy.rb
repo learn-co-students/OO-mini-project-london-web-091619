@@ -20,5 +20,4 @@ class Allergy
     @ingredient = ingredient
     save
   end
-
 end
