@@ -1,3 +1,4 @@
+require 'pry'
 class User 
     attr_reader :name
 
@@ -43,5 +44,19 @@ class User
     # class
     def self.all
         @@all
+    end
+
+    def safe_recipes
+        safe_recipes = Recipe.all
+        safe_recipes.map do |recipe|
+            ingredients = recipe.ingredient
+            ingredients.each do|ingredient| 
+             
+            if allergens.map{|allergen| allergen.ingredient}.include?(ingredient)
+                safe_recipes.delete(recipe)
+            end
+            end
+        end
+        safe_recipes
     end
 end

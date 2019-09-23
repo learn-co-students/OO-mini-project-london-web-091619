@@ -26,8 +26,8 @@ class Recipe
     end
 
     def allergens
-       x =  users.map{|user|user.allergens}[0]
-       x.map{|allergy| allergy.ingredient}
+       allergys =  users.map{|user|user.allergens}[0]
+       allergys.map{|allergy| allergy.ingredient}
     end
 
     #class
