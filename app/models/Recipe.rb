@@ -13,6 +13,7 @@ class Recipe
 
   def initialize(name:)
     @name = name
+    save
   end
 
   def recipecards

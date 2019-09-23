@@ -45,4 +45,20 @@ class User
   def most_recent_recipe
     recipecards.max_by { |recipecard| recipecard.date }.recipe
   end
+
+  def safe_recipes
+    safe_recipes = []
+    Recipe.all.each do |recipe|
+      safety = 'safe'
+      allergens.each do |allergen|
+        if recipe.ingredients.include?(allergen)
+          safety = 'unsafe'
+        end
+      end
+      if safety == 'safe'
+        safe_recipes << recipe
+      end
+    end
+    safe_recipes
+  end
 end
