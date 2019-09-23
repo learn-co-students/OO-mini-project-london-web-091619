@@ -47,18 +47,8 @@ class User
   end
 
   def safe_recipes
-    safe_recipes = []
-    Recipe.all.each do |recipe|
-      safety = 'safe'
-      allergens.each do |allergen|
-        if recipe.ingredients.include?(allergen)
-          safety = 'unsafe'
-        end
-      end
-      if safety == 'safe'
-        safe_recipes << recipe
-      end
+    Recipe.all.select do |recipe|
+      (allergens & recipe.ingredients).empty?
     end
-    safe_recipes
   end
 end
